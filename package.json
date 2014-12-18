@@ -1,0 +1,27 @@
+{
+  "name": "express-node",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A starter project for node and express",
+  "repository": "",
+  "license": "MIT",
+  "devDependencies": {
+    "karma": "~0.10",
+    "protractor": "^1.1.1",
+    "http-server": "^0.6.1",
+    "bower": "^1.3.1",
+    "shelljs": "^0.2.6",
+    "karma-junit-reporter": "^0.2.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "consolidate": "^0.10.0",
+    "express": "^4.10.6",
+    "express-handlebars": "^1.1.0",
+//    "express3-handlebars": "^0.5.2",
+    "karma": "^0.12.28",
+    "mongoose": "^3.8.20",
+    "socket.io": "^1.2.1",
+    "swig": "^1.4.2"
+  }
+}
