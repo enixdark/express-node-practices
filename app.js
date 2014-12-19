@@ -9,7 +9,9 @@ var path = require('path');
 var cons = require('consolidate');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
-var app = express()
+
+
+var app = express();
 //app.engine('html',cons.swig);
 //app.set('view engine','html');
 //app.set('views',__dirname + "/views");
@@ -22,6 +24,15 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 //app.engine('handlebars', exphbs.engine);
 app.set('view engine', 'handlebars');
 //app.set('views',__dirname + "/views");
+//app.use(express.compress());
+app.use(express.static(__dirname + '/static'));
+//app.use(express.static(__dirname + '/views'));
+
+app.use(function(req, res, next){
+    res.locals.showTests = app.get('env') !== 'production' &&
+    req.query.test === '1';
+    next();
+});
 
 
 app.get("/",function(req,res){
@@ -35,10 +46,21 @@ app.get('/about',function(req,res,next){
     //if(err){
     //    throw err;
     //}
-    res.render('about');
+
+    var foo = require("./static/js/fortune");
+    res.render('about',{ fortune : foo.getFortune(),pageTestScript: '/qa/test-about.js' });
 });
 
-app.use(function(req,res,next){
+app.get('/tours/hood-river', function(req, res){
+    res.render('tours/hood-river');
+});
+app.get('/tours/request-group-rate', function(req, res){
+    res.render('tours/request-group-rate');
+});
+
+
+
+app.use(function(err,req,res,next){
     //if(err){
     //    throw err;
     //}
@@ -53,7 +75,8 @@ app.use(function(err,req,res,next){
     res.status(500);
     res.render('error/505_page');
 });
-app.use(express.static(__dirname + '/static'));
+
+
 
 
 //function serverStatic(res,path,contentType,responseCode){
@@ -87,7 +110,9 @@ app.use(express.static(__dirname + '/static'));
 //            break;
 //    }
 //}).listen('3000');
-app.listen(3000,function(err) {
+app.listen(8000,function(err) {
     if(err) throw err;
-    console.log("this server starting at localhost:3000");
+    console.log("this server starting at localhost:8000");
+    console.log(__dirname);
+
 });
