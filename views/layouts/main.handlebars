@@ -5,18 +5,32 @@
     {{#if showTests}}
         <link rel="stylesheet" href="/vendor/mocha.css">
     {{/if}}
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link type="text/css" media="screen" rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link type="text/css" media="screen" rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
 
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script rel="script" src="/bower_components/angular/angular.js"></script>
+    <script rel="script" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script rel="script" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    {{{_sections.head}}}
 
 </head>
 
 <body>
-{{{body}}}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="...">
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container">
 
+{{{body}}}
+</div>
+
+<footer class="panel-footer">&copy; {{copyrightYear}} Meadowlark Travel</footer>
 {{#if showTests}}
     <div id="mocha"></div>
     <script src="/vendor/mocha.js"></script>
@@ -31,6 +45,7 @@
     {{/if}}
     <script>mocha.run();</script>
 {{/if}}
+{{{_sections.jquery}}}
 </body>
 
 
